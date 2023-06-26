@@ -12,7 +12,7 @@ writer=csv.writer(file)
 writer.writerow(["id", "name", "price", "specifications", "number of reviews"])
 
 # SCRAPER setup for page
-browser_driver=Service("C:\\Users\\16306\\OneDrive\\Desktop\\DCC Exercises\\Web Scraping\\Selenium demo\\chromedriver.exe")
+browser_driver=Service("C:\\Users\\16306\\OneDrive\\Desktop\\chromedriver.exe")
 scraper=webdriver.Chrome(service=browser_driver)
 scraper.get("https://webscraper.io/test-sites/e-commerce/static/computers/laptops")
 
@@ -23,6 +23,11 @@ scraper.get("https://webscraper.io/test-sites/e-commerce/static/computers/laptop
     # spec is class of "description"
     # review number is class of "pull-right"
     # page turner is 
+
+# CREATE wait to make sure data loads before scraping
+# wait = WebDriverWait(scraper, 10)
+# element_to_watch = scraper.find_element(By.CLASS_NAME, "row")
+# wait.until(EC.visibility_of(element_to_watch))
 
 # SCRAPE the page
 unique_id=1
@@ -36,13 +41,10 @@ while True:
         writer.writerow(
             [unique_id, name.text, price.text, specifications.text, number_of_reviews.text])
         unique_id +=1
-    
     try:
-        element=scraper.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div[2]/nav/ul/li[15]/a")
+        element=scraper.find_element(By.CSS_SELECTOR, "body > div.wrapper > div.container.test-site > div > div.col-md-9 > nav > ul > li:nth-child(15) > a")
         element.click()
     except NoSuchElementException:
-       break
+        break
 
 # QUIT browser and close file
-file.close()
-scraper.quit()
