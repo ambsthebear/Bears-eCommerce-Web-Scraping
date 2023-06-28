@@ -34,12 +34,12 @@ element_to_watch.click()
 # SCRAPE the page
 unique_id=1
 while True:
-    gadgets=scraper.find_elements(By.CLASS_NAME, "caption")
+    gadgets=scraper.find_elements(By.CLASS_NAME, "col-sm-4.col-lg-4.col-md-4")
     for gadget in gadgets:
         name=gadget.find_element(By.CLASS_NAME, "title")
         price=gadget.find_element(By.CLASS_NAME, "pull-right.price")
         specifications=gadget.find_element(By.CLASS_NAME, "description")
-        number_of_reviews=gadget.find_element(By.CLASS_NAME, "pull-right")
+        number_of_reviews=gadget.find_element(By.CLASS_NAME, "ratings").find_element(By.CLASS_NAME, "pull-right")
         writer.writerow(
             [unique_id, name.text, price.text, specifications.text, number_of_reviews.text])
         unique_id +=1
