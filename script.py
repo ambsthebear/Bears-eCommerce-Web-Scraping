@@ -7,12 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import csv
 
 # FIND elements using developer tools
-    # laptop card is class of "col-sm-4 col-lg-4 col-md-4" or "thumbnail" or "caption"
+    # laptop card is class of "col-sm-4.col-lg-4.col-md-4"
     # name is class of "title"
-    # price is class of "pull-right price" or plt "$" or selector "body > div.wrapper > div.container.test-site > div > div.col-md-9 > div > div:nth-child(2) > div > div.caption > h4.pull-right.price"
+    # price is class of "pull-right.price"
     # spec is class of "description"
-    # review number is class of "pull-right"
-    # page turner is plt "Next »" or "›"
+    # review number is class of "pull-right" within element class of "ratings"
+    # page turner is plt "›"
     # cookies banner is class of "acceptCookies"
     
 # CSV setup
